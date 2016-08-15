@@ -6,12 +6,12 @@ end
 # posts login info from the form and redirects appropriately
 post '/sessions/new' do
   # note that login form will need to look like "name='user[password]'"
-  @user = User.find_by(email: params[:user][:email])
+  @user = User.find_by(username: params[:user][:username])
   if @user && @user.authenticate(params[:user][:password])
     session[:user_id] = @user.id
     redirect "/users/#{@user.id}"
   else
-    @errors = ["Couldn't find you. Try again."]
+    @errors = ["Something went wrong."]
     erb :"/_errors"
   end
 end

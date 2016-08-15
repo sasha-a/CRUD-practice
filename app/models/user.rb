@@ -1,7 +1,6 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-
   has_many :restaurants
 
   validates :username, :email, presence: true, uniqueness: true
