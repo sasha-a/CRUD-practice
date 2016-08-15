@@ -1,14 +1,28 @@
-<h2><%= @restaurant.name %></h2>
-<p><strong>Location: </strong><%= @restaurant.location %></p>
-<p><strong>Cuisine: </strong><%= @restaurant.cuisine %></p>
-
-<% if logged_in? %>
-
-  <% if my_restaurant?(@restaurant) %>
-    <a href="/restaurants/<%= @restaurant.id %>/edit">Edit</a>
-    <a href="/restaurants/<%= @restaurant.id %>/edit">Delete</a>
-  <% end %>
-
-<% else %>
-  <p>Log in to edit a restaurant</p>
+<% if logged_in? && my_restaurant?(@restaurant) %>
+  <a href="/restaurants/<%= @restaurant.id %>/edit">Edit</a>
+  <form method="post" action="/restaurants/<%= @restaurant.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+  </form>
 <% end %>
+
+<h2><%= @restaurant.name %></h2>
+
+<ul class="restaurant-info">
+  <li><strong>Location: </strong><%= @restaurant.location %></li>
+  <li><strong>Cuisine: </strong><%= @restaurant.cuisine %></li>
+  <li><strong>Rating: </strong></li>
+  <li>
+    <% if logged_in? %>
+      <strong><a href="/reviews/new">Leave a review</a></strong>
+    <% else %>
+      <strong><a href="/sessions/new">Login to leave a review</a></strong>
+    <% end %>
+  </li>
+</ul>
+
+
+
+
+
+

@@ -11,10 +11,10 @@ users = 3.times.map do
                 :password   => 'password' )
 end
 
-restaurant_user_id = rand(1..10)
+restaurant_user_id = [1, 2, 3]
 restaurants = 10.times.map do
   Restaurant.create!( :name => Faker::Hipster.word,
                 :location => Faker::Address.city,
                 :cuisine => 'awesome',
-                :user_id => restaurant_user_id )
+                :user_id => restaurant_user_id.sample )
 end

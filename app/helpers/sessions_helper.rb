@@ -11,8 +11,8 @@ helpers do
     self.current_user != nil
   end
 
-  def authenticate!
-    redirect '/sessions/new' unless logged_in
+  def ensure_login!
+    redirect '/sessions/new' unless logged_in?
   end
 
 end
