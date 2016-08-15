@@ -1,0 +1,18 @@
+<section class="add-restaurant">
+  <% if @errors %>
+    <% @errors.each do |error| %>
+      <%= error %>
+    <% end %>
+  <% end %>
+
+  <h3>Add a restaurant</h3>
+  <form action="/restaurants" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="restaurant[name]"><br>
+    <label for ="location">Location:</label>
+    <input type="text" name="restaurant[location]"><br>
+    <label for="cuisine">Cuisine:</label>
+    <input type="text" name="restaurant[cuisine]">
+    <input type="submit" value="Add">
+  </form>
+</section>

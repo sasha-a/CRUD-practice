@@ -1,0 +1,14 @@
+<% if logged_in? %>
+  <h3><a href="/restaurants/new">Add a restaurant</a></h3>
+<% end %>
+
+<h2>List of restaurants:</h2>
+<ul class="restaurant-list">
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
+      <p><%= restaurant.location %></p>
+    </li>
+  <% end %>
+</ul>
+

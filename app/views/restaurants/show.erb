@@ -1,0 +1,14 @@
+<h2><%= @restaurant.name %></h2>
+<p><strong>Location: </strong><%= @restaurant.location %></p>
+<p><strong>Cuisine: </strong><%= @restaurant.cuisine %></p>
+
+<% if logged_in? %>
+
+  <% if my_restaurant?(@restaurant) %>
+    <a href="/restaurants/<%= @restaurant.id %>/edit">Edit</a>
+    <a href="/restaurants/<%= @restaurant.id %>/edit">Delete</a>
+  <% end %>
+
+<% else %>
+  <p>Log in to edit a restaurant</p>
+<% end %>

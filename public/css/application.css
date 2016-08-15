@@ -1,0 +1,33 @@
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+header {
+  margin: 20px auto;
+  width: 600px;
+  height: 80px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+.container {
+  margin: 20px auto;
+  width: 600px;
+  padding: 0px 20px 20px 20px;
+  border: 1px dotted black;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+ul.nav {
+  padding: 20px 0;
+}
+ul.nav li {
+  display: inline-block;
+  padding-right: 25px;
+}
+
