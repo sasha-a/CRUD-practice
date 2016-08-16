@@ -8,6 +8,10 @@ class Restaurant < ActiveRecord::Base
 
   scope :sorted, -> { order(name: :asc) }
 
+  def has_reviews?
+    self.reviews.length > 0
+  end
+
   def reviewed_by?(user)
     self.reviews.find_by(user_id: user.id)
   end

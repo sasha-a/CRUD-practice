@@ -18,10 +18,10 @@
   <li><strong>Location: </strong><%= @restaurant.location %></li>
   <li><strong>Cuisine: </strong><%= @restaurant.cuisine %></li>
   <li><strong>Rating: </strong>
-    <% if @restaurant.reviews.length == 0 %>
-      Nobody rated this place yet.
-    <% else %>
+    <% if @restaurant.has_reviews? %>
       <%= @restaurant.average_rating %>
+    <% else %>
+      Nobody rated this place yet.
     <% end %>
   </li>
   <li>
