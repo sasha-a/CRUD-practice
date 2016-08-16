@@ -1,6 +1,6 @@
 # Home page
 get '/' do
-  @restaurants = Restaurant.all.sort.reverse
+  @restaurants = Restaurant.sorted
   erb :'/restaurants/index'
 end
 
@@ -33,6 +33,7 @@ end
 get '/restaurants/:id/edit' do
   ensure_login!
   @restaurant = Restaurant.find_by(id: params[:id])
+
   erb :"/restaurants/edit"
 end
 

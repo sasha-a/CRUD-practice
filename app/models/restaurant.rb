@@ -6,6 +6,8 @@ class Restaurant < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates :location, :cuisine, :user_id, presence: true
 
+  scope :sorted, -> { order(name: :asc) }
+
   def reviewed_by?(user)
     self.reviews.find_by(user_id: user.id)
   end
