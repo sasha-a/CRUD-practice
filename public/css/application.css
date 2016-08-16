@@ -1,8 +1,8 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+.left {
+  float: left;
+}
+.right {
+  float: right;
 }
 header {
   margin: 20px auto;
@@ -32,12 +32,15 @@ nav ul li {
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
 }
-.left {
-  float: left;
+.editor {
+  padding: 0;
+  margin: 20px 0;
 }
-.right {
-  float: right;
+.editor li {
+  display: inline-block;
+  margin-right: 7px;
 }
-
-
+.review-list ul {
+  list-style: none;
+}
 
