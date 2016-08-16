@@ -8,6 +8,19 @@
     <li>
       <a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a>
       <p><%= restaurant.location %></p>
+       <% if logged_in? && my_restaurant?(restaurant) %>
+        <ul class="editor">
+          <li>
+            <a href="/restaurants/<%= restaurant.id %>/edit">Edit <%= restaurant.name %></a>
+          </li>
+          <li>
+            <form method="post" action="/restaurants/<%= restaurant.id %>">
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" value="Delete <%= restaurant.name %>">
+            </form>
+          </li>
+        </ul>
+      <% end %>
     </li>
   <% end %>
 </ul>

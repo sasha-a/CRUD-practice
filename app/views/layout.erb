@@ -19,24 +19,25 @@
 </head>
 <body>
   <header>
-    <h1 class="left">DBC Eat and Review</h1>
-    <ul class="right nav">
+    <h1 class="left">Eat and Review</h1>
+  </header>
+  <nav>
+    <ul>
       <li><a href="/">Home</a></li>
-      <% if current_user %>
+      <% if logged_in? %>
         <li><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
         <li>
-          <a href="/logout"> Logout Yo</a>
-      <!--     <form method="post" action="/logout">
+          <form method="post" action="/logout">
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Logout">
-          </form> -->
+          </form>
         </li>
       <% else %>
         <li><a href="/users/new">Register</a></li>
         <li><a href="/sessions/new">Login</a></li>
       <% end %>
     </ul>
-  </header>
+  </nav>
   <main class="container">
     <%= yield %>
   </main>

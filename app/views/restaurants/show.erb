@@ -1,14 +1,54 @@
-<h2><%= @restaurant.name %></h2>
-<p><strong>Location: </strong><%= @restaurant.location %></p>
-<p><strong>Cuisine: </strong><%= @restaurant.cuisine %></p>
-
-<% if logged_in? %>
-
-  <% if my_restaurant?(@restaurant) %>
-    <a href="/restaurants/<%= @restaurant.id %>/edit">Edit</a>
-    <a href="/restaurants/<%= @restaurant.id %>/edit">Delete</a>
-  <% end %>
-
-<% else %>
-  <p>Log in to edit a restaurant</p>
+<% if logged_in? && my_restaurant?(@restaurant) %>
+  <ul class="editor">
+    <li>
+      <a href="/restaurants/<%= @restaurant.id %>/edit">Edit</a>
+    </li>
+    <li>
+      <form method="post" action="/restaurants/<%= @restaurant.id %>">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Delete">
+      </form>
+    </li>
+  </ul>
 <% end %>
+
+<h2><%= @restaurant.name %></h2>
+
+<ul class="restaurant-info">
+  <li><strong>Location: </strong><%= @restaurant.location %></li>
+  <li><strong>Cuisine: </strong><%= @restaurant.cuisine %></li>
+  <li><strong>Rating: </strong><%= @restaurant.average_rating %></li>
+  <li>
+    <% if logged_in? %>
+      <% if @restaurant.reviewed_by?(current_user) %>
+        <strong>Thank you for reviewing <%= @restaurant.name %>!</strong>
+      <% else %>
+        <strong><a href="/restaurants/<%= @restaurant.id %>/reviews/new">Leave a review</a></strong>
+      <% end %>
+    <% else %>
+      <strong><a href="/sessions/new">Login</a> to leave a review</strong>
+    <% end %>
+  </li>
+</ul>
+
+<h3>Reviews</h3>
+<div class="review-list">
+
+  <% if has_reviews?(@restaurant) %>
+    <% @restaurant.reviews.each do |review| %>
+      <ul>
+        <!-- I want to be able to show individual points by a certain usr -->
+        <li><%= @res %><strong>By <%= review.user.username %> on <%= review.created_at %></strong></li>
+        <li><%= review.body %></li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p>Be the first one to <a href="/restaurants/<%= @restaurant.id %>/reviews/new">review <%= @restaurant.name.capitalize %></a>!</p>
+  <% end %>
+</div>
+
+
+
+
+
+

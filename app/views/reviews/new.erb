@@ -1,0 +1,17 @@
+<form action="/restaurants/<%= @restaurant.id %>/reviews" method="POST">
+  <h2>Leave a review for <%= @restaurant.name %></h2>
+
+  <label for="points">Rating: </label>
+  <select name="review[points]">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select><br><br>
+
+  <textarea name="review[body]" placeholder="Your review here..."></textarea><br><br>
+
+  <input type="submit" value="Leave a review">
+</form>
+

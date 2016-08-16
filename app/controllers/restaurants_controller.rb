@@ -6,11 +6,13 @@ end
 
 # form for restaurant
 get '/restaurants/new' do
+  ensure_login!
   erb :"/restaurants/new"
 end
 
 # Create new restaurant
 post '/restaurants' do
+  ensure_login!
   @restaurant = Restaurant.new(params['restaurant'])
   current_user.restaurants << @restaurant
 
@@ -29,22 +31,35 @@ get '/restaurants/:id' do
 end
 
 get '/restaurants/:id/edit' do
+  ensure_login!
   @restaurant = Restaurant.find_by(id: params[:id])
   erb :"/restaurants/edit"
 end
 
 put '/restaurants/:id' do
+  ensure_login!
   @restaurant = Restaurant.find_by(id: params[:id])
 
   if my_restaurant?(@restaurant)
-    @restaurant.update(params['restaurant'])
-    redirect :"/restaurants/#{@restaurant.id}"
+    if @restaurant.update_attributes(params['restaurant'])
+      redirect :"/restaurants/#{@restaurant.id}"
+    else
+      @errors = ["Something went wrong."]
+      erb :"/restaurants/edit"
+    end
   else
-    @errors = ["Something went wrong."]
-    erb :"/restaurants/edit"
+    redirect '/'
   end
 end
 
+delete '/restaurants/:id' do
+  ensure_login!
+  @restaurant = Restaurant.find_by(id: params[:id])
+  if my_restaurant?(@restaurant)
+    @restaurant.destroy
+  end
+  redirect '/'
+end
 
 
 
