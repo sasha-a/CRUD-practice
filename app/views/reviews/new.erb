@@ -1,8 +1,10 @@
+<%= erb :"_errors" %>
 <form action="/restaurants/<%= @restaurant.id %>/reviews" method="POST">
   <h2>Leave a review for <%= @restaurant.name %></h2>
 
   <label for="points">Rating: </label>
   <select name="review[points]">
+    <option value="0">Choose:</option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>

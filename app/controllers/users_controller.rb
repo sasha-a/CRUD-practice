@@ -16,6 +16,7 @@ end
 
 # display a specific user (profile page)
 get '/users/:id' do
+  ensure_login!
   @user = User.find_by(id: params[:id])
   erb :'/users/show'
 end
@@ -28,9 +29,15 @@ end
 # update a specific user
 put '/users/:id' do
   @user = User.find_by(id: params[:id])
+  @restaurants = @user.restaurants
 end
 
 # delete user permanently
 delete '/users/:id' do
   @user = User.find_by(id: params[:id])
+end
+
+get "/users" do
+  @users = User.all
+  erb :"/users/index"
 end

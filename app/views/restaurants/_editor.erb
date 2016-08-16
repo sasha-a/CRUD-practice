@@ -1,0 +1,11 @@
+<ul class="editor">
+  <li>
+    <a href="/restaurants/<%= restaurant.id %>/edit">Edit</a>
+  </li>
+  <li>
+    <form method="post" action="/restaurants/<%= restaurant.id %>">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete">
+    </form>
+  </li>
+</ul>

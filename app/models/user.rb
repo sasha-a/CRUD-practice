@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
   def authenticate(plain_text_password)
     self.password == plain_text_password
   end
+
+  def has_restaurants?
+    self.restaurants.length > 0
+  end
 end
