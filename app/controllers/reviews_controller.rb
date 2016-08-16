@@ -10,8 +10,10 @@ post '/restaurants/:id/reviews' do
   @review = Review.new(params['review'])
   @review.user_id = current_user.id
   @restaurant.reviews << @review
-
+  # remove null false and move to inside if statement
   if @review.save
+    # @review.user_id = current_user.id
+    # @restaurant.reviews << @review
     @message = "Thank you for your review!"
     redirect "/restaurants/#{@restaurant.id}"
   else
