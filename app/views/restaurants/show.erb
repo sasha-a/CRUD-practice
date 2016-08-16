@@ -17,7 +17,13 @@
 <ul class="restaurant-info">
   <li><strong>Location: </strong><%= @restaurant.location %></li>
   <li><strong>Cuisine: </strong><%= @restaurant.cuisine %></li>
-  <li><strong>Rating: </strong><%= @restaurant.average_rating %></li>
+  <li><strong>Rating: </strong>
+    <% if @restaurant.reviews.length == 0 %>
+      Nobody rated this place yet.
+    <% else %>
+      <%= @restaurant.average_rating %>
+    <% end %>
+  </li>
   <li>
     <% if logged_in? %>
       <% if @restaurant.reviewed_by?(current_user) %>
@@ -46,9 +52,3 @@
     <p>Be the first one to <a href="/restaurants/<%= @restaurant.id %>/reviews/new">review <%= @restaurant.name.capitalize %></a>!</p>
   <% end %>
 </div>
-
-
-
-
-
-
